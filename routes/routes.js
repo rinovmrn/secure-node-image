@@ -1,16 +1,7 @@
 const express = require("express");
 const router = express.Router();
-
-const cloudinary = require("cloudinary").v2;
-require("dotenv").config();
 const db = require("../services/dbConnect.js");
-
-// cloudinary configuration
-cloudinary.config({
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.API_KEY,
-  api_secret: process.env.API_SECRET,
-});
+const imageUpload = require("./controllers/imageUpload");
 
 router.get("/", (request, response, next) => {
   response.json({ message: "Hey! This is your server response!" });
@@ -18,28 +9,7 @@ router.get("/", (request, response, next) => {
 });
 
 // image upload API
-router.post("/image-upload", (request, response) => {
-  // collected image from a user
-  const data = {
-    image: request.body.image,
-  };
-
-  // upload image here
-  cloudinary.uploader
-    .upload(data.image)
-    .then((result) => {
-      response.status(200).send({
-        message: "success",
-        result,
-      });
-    })
-    .catch((error) => {
-      response.status(500).send({
-        message: "failure",
-        error,
-      });
-    });
-});
+router.post("image-upload", imageUpload.imageUpload);
 
 // persist image
 router.post("/persist-image", (request, response) => {
