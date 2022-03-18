@@ -4,9 +4,9 @@ const db = require("../../services/dbConnect.js");
 
 // cloudinary configuration
 cloudinary.config({
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.API_KEY,
-  api_secret: process.env.API_SECRET,
+  cloud_name: "rinovmrn",
+  api_key: "439178285582569",
+  api_secret: "BGX5hwGzeYmwkkSBqg6mJmN7j-U",
 });
 
 
