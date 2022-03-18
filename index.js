@@ -1,9 +1,6 @@
 // File Index
 const http = require('http');
 const app = require('./app');
-const someObject = undefined
-
-someObject.someProperty
 
 const normalizePort = val => {
   const port = parseInt(val, 10);
